@@ -1,51 +1,50 @@
 class User:
-    def __init__(self, id, name, level):
-        self.__id = id
-        self.name = name
-        self.level = level
+    def __init__(self, id, name):
+        self._id = id
+        self._name = name
+        self._level = 'user'
 
         self.users = []
 
     def get_id(self):
-        return self.__id
+        return self._id
     def set_id(self, id):
-        self.__id = id
+        self._id = id
+
+    def get_name(self):
+        return self._name
+    def set_name(self, name):
+        self._name = name
+
+    def get_level(self):
+        return self._level
+    def set_level(self, level):
+        self._level = level
 
 
 class Admin(User):
-    def __init__(self, id, name, level):
-        super().__init__(id, name, 'admin')
+    def __init__(self, id, name):
+        super().__init__(id, name)
+        self._level = 'admin'
 
-    def add_user(self, id, name, level):
-        self.users.append({'id': id, 'name': name, 'level': level})
 
-    def remove_user(self, id):
-        for user in self.users:
-            if user['id'] == id:
-                self.users.remove(user)
+    def add_user(self, user_list, user,):
+        user_list.append(user)
+        print(f"Пользователь  добавлен")
+        print(user_list)
 
-    def print_user(self):
-        for user in self.users:
-            print(f"Сотрудник:{user['id']} Имя:{user['name']} Уровень:{user['level']}")
+    def remove_user(self, user_list, user):
+        user_list.remove(user)
 
 
 
+users = []
+admin = Admin(1, 'Vasya')
+user1 = User(1, 'Petya')
 
 
-
-a = Admin(0, 'Артем', 'admin')
-a.add_user(1, 'Иван','user')
-a.add_user(2, 'Петр','user')
-a.add_user(3, 'Сидор','user')
-
-a.print_user()
-a.remove_user(2)
-a.print_user()
-a.set_id(3)
-print(a.get_id())
-
-
-
+print(user1.get_name())
+admin.add_user(users, user1)
 
 
 
